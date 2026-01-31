@@ -1,0 +1,13 @@
+# Python virtual environment
+myenv/
+__pycache__/
+
+# VS Code settings
+.vscode/
+
+# Database files (if any)
+*.db
+
+# OS files
+.DS_Store
+Thumbs.db
