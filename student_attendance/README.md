@@ -1,72 +1,42 @@
-\# Student Attendance \& Marks Management System
+# Student Attendance & Marks Management System
 
+A Streamlit-based web application to manage student details, attendance, and marks with authentication support.
 
+---
 
-This is a Streamlit-based application for managing student attendance and marks using a MySQL database.
+## 🚀 Features
+- User login & logout (session-based authentication)
+- Add and view students
+- Mark and view attendance
+- Add and view marks
+- Clean UI with sidebar navigation
 
+---
 
+## 🛠 Technologies Used
+- Python
+- Streamlit
+- MySQL (planned / configurable)
+- Pandas
 
-\## Features
+---
 
-\- Student registration
+## 📁 Project Structure
+student_attendance/
+│
+├── app.py          # Application entry point
+├── views.py        # UI routing and layout
+├── auth.py         # Authentication logic
+├── student.py      # Student management
+├── attendance.py   # Attendance management
+├── marks.py        # Marks management
+├── db.py           # Database connection
+├── requirements.txt
+└── README.md
 
-\- Attendance management
+---
 
-\- Marks management
-
-\- Authentication (Login / Logout)
-
-\- Dashboard views
-
-
-
-\## Technologies Used
-
-\- Python
-
-\- Streamlit
-
-\- MySQL
-
-\- Pandas
-
-
-
-\## Project Structure
-
-\- app.py        : Main entry point of the application
-
-\- auth.py       : Handles user authentication
-
-\- student.py    : Student-related operations
-
-\- attendance.py : Attendance logic
-
-\- marks.py      : Marks management
-
-\- db.py         : Database connection
-
-\- views.py      : UI and page routing
-
-
-
-\## How to Run
-
-1\. Install required packages:
-
-
-
-pip install streamlit mysql-connector-python pandas
-
-2\. Run the application:
-
-
-
+## ▶ How to Run Locally
+```bash
+pip install -r requirements.txt
 streamlit run app.py
-
-\## Note
-
-Make sure MySQL is running and database credentials are correctly set in `db.py`.
-
-
-
