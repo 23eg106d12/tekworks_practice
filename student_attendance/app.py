@@ -140,3 +140,39 @@ if submit:
 
         except Exception as e:
             st.error(f"Error: {e}")
+
+st.divider()
+st.subheader("Attendance History")
+
+history_student = st.selectbox(
+    "Select Student to View Attendance",
+    ["Select Student"] + list(student_map.keys()),
+    key="history_student"
+)
+if history_student != "Select Student":
+    student_id = student_map[history_student]
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT date, status
+        FROM attendance
+        WHERE student_id = %s
+        ORDER BY date
+    """, (student_id,))
+
+    records = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    if records:
+        st.dataframe(records, use_container_width=True)
+
+        total_days = len(records)
+        present_days = sum(1 for r in records if r[1] == "Present")
+
+        attendance_percent = (present_days / total_days) * 100
+        st.success(f"Attendance Percentage: {attendance_percent:.2f}%")
+    else:
+        st.warning("No attendance records found")
