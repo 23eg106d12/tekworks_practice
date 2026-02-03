@@ -176,3 +176,39 @@ if history_student != "Select Student":
         st.success(f"Attendance Percentage: {attendance_percent:.2f}%")
     else:
         st.warning("No attendance records found")
+
+st.divider()
+st.subheader("Pass / Fail Status")
+
+result_student = st.selectbox(
+    "Select Student to View Result",
+    ["Select Student"] + list(student_map.keys()),
+    key="result_student"
+)
+if result_student != "Select Student":
+    student_id = student_map[result_student]
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT subject, marks
+        FROM marks
+        WHERE student_id = %s
+    """, (student_id,))
+
+    marks_data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    if marks_data:
+        st.dataframe(marks_data, use_container_width=True)
+
+        failed_subjects = [m for m in marks_data if m[1] < 40]
+
+        if failed_subjects:
+            st.error("Result: FAIL ❌")
+        else:
+            st.success("Result: PASS ✅")
+    else:
+        st.warning("No marks available for this student")
