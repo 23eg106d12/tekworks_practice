@@ -1,13 +1,5 @@
-# Python virtual environment
+env/
+venv/
 myenv/
 __pycache__/
-
-# VS Code settings
-.vscode/
-
-# Database files (if any)
-*.db
-
-# OS files
-.DS_Store
-Thumbs.db
+.streamlit/
